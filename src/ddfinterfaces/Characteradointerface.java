@@ -37,6 +37,5 @@ public abstract interface Characteradointerface {
     int getInt();
     int getWis();
     int getChar();
-    
             
 }

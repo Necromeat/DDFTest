@@ -5,6 +5,8 @@
  */
 package ddfinterfaces;
 
+import ddfplayer.Player;
+import general.Monster;
 import java.util.List;
 
 /**
@@ -14,11 +16,12 @@ import java.util.List;
  * @param <B>
  * @param <C>
  */
-public interface Combatinterface<E,B,C> {
+public interface Combatinterface<E extends Player,B extends Monster,C> {
     void fight(List<E>players,List<B>Monster,List<C> NPC);
     void Rolecommands(Enum Role);
     void sortCombatents();
-    
+    boolean playerDefeated();
+    boolean monsetDefeated();
     
     
     

@@ -11,4 +11,23 @@ package general;
  */
 public class Roleofplayer {
     
+    private int weaponskill;
+
+    public Roleofplayer() {
+    }
+
+    public Roleofplayer(int weaponskill) {
+        this.weaponskill = weaponskill;
+    }
+
+    public int getWeaponskill() {
+        return weaponskill;
+    }
+
+    public void setWeaponskill(int weaponskill) {
+        this.weaponskill = weaponskill;
+    }
+    
+    
+    
 }

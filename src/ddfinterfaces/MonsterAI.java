@@ -5,6 +5,7 @@
  */
 package ddfinterfaces;
 
+import general.Characterado;
 import general.Monster;
 
 /**
@@ -12,6 +13,5 @@ import general.Monster;
  * @author Andrew
  */
 public interface MonsterAI {
-    Monster monster();
     
 }

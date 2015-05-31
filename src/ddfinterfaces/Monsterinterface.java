@@ -5,7 +5,6 @@
  */
 package ddfinterfaces;
 
-import general.Characterado;
 import general.Item;
 import java.util.List;
 
@@ -13,11 +12,11 @@ import java.util.List;
  *
  * @author Andrew
  */
-public interface Monsterinterface extends Characteradointerface {
+public interface Monsterinterface  {
+    
     List<Item> getloot();
-    Characterado getCharaterado();
     Enum getAggression();
     boolean rightlocation();
-    
+    int getDamage();
     
 }

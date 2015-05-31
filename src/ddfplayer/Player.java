@@ -14,6 +14,7 @@ import general.Roleofplayer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import map.Location;
 
 /**
@@ -30,11 +31,8 @@ public class Player extends Characterado implements Playerinterface {
     private HashMap attributes;
     private List<Item> inventory;
     private int id;
-    private int hp;
-    
-    
-    
-   
+    private int hp; 
+        
 
     public Player(String name,int hp,Location loc, Roleofplayer rop,List<Item> equipment,List<Item> inventory, Enum alligenment,Race race, HashMap attributes, int id) {
         this.name = name;
@@ -50,11 +48,13 @@ public class Player extends Characterado implements Playerinterface {
         
     }
     
-    public Player(String name,int hp,HashMap attributes,Race race){
+    public Player(String name,int hp,HashMap attributes,Race race,Roleofplayer rp){
          this.name = name;
         this.attributes = attributes;       
         this.hp = hp;
         this.race = race;
+        this.rop = rp;
+        setHP();
     }
    
       
@@ -73,6 +73,7 @@ public class Player extends Characterado implements Playerinterface {
     public void interact() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+ 
 
     @Override
     public String getName() {
@@ -127,7 +128,8 @@ public class Player extends Characterado implements Playerinterface {
 
     @Override
     public int getIniative() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return modifierCalculation(getAgil());
+    
     }
 
     @Override
@@ -143,29 +145,33 @@ public class Player extends Characterado implements Playerinterface {
     }
 
     @Override
-    public int getCon() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public int getCon() {int i = 0;
+    i = (Integer)attributes.get(Enummer.attributes.Constituion)+ race.getRaceConMod();
+    return i;}
 
     @Override
     public int getAgil() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      int i = 0;
+    i = (Integer)attributes.get(Enummer.attributes.Agility)+ race.getRaceAgiMod();
+    return i;
     }
 
     @Override
     public int getInt() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int i = 0;
+    i = (Integer)attributes.get(Enummer.attributes.Intellegence)+ race.getRaceIntMod();
+    return i;
     }
 
     @Override
-    public int getWis() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public int getWis() { int i = 0;
+    i = (Integer)attributes.get(Enummer.attributes.Wisdom)+ race.getRaceWisMod();
+    return i;}
 
     @Override
-    public int getChar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public int getChar() { int i = 0;
+    i = (Integer)attributes.get(Enummer.attributes.Charisma)+ race.getRaceCharMod();
+    return i;}
     
    
 
@@ -188,6 +194,31 @@ public class Player extends Characterado implements Playerinterface {
         attributes.put("Charsima", 10);
                 
     }
+     
+     int modifierCalculation(int attribute){
+         int i = (attribute-10)/2;
+         return i;
+     }
+     
+     final void setHP(){
+         this.hp = this.hp+modifierCalculation(getCon());
+     }
+            
 
+    @Override
+    public int getWeaponSkill() {
+        return rop.getWeaponskill();
+    }
+
+    //Will build a way to get values
+    @Override
+    public int getDefense() {
+        return 10;
     
+    }
+    
+    public int getDamage(){
+        Random ran = new Random();
+        return ran.nextInt(12)+1+modifierCalculation(getStr());
+    }
 }

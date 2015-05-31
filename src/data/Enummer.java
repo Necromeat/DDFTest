@@ -14,8 +14,10 @@ public interface Enummer {
     enum Combat{hit,miss,critical,block};
     enum aggression{aggressive,passive,trusting};
     enum role{trader,quester,commoner,mayor};
-    enum move{north,south,east,west}
     enum help{help_move,help_combat,help_basics,help;}
     enum attributes{Strength,Agility,Constituion,Intellegence,Wisdom,Charisma}
     enum Race{Human,Dwarf,Elf,Orc};
+    enum Moves{North,South,East,West,up,down};
+    enum Equipment{Simple,Martial,Excotic}
+    
 }

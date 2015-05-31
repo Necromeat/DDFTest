@@ -7,13 +7,12 @@ package ddfcombat;
 
 import UI.UI;
 import data.Enummer;
+import data.Filehandler;
 import ddfplayer.Player;
-import general.Item;
 import java.util.HashMap;
-import map.Location;
-import java.util.List;
 import general.Race;
 import general.Roleofplayer;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,10 +28,13 @@ public class DDFCombat {
      */
     public static void main(String[] args) {
         DDFCombat df = new DDFCombat();
-        //df.shitter();
-        df.testStats();
-        //df.testRace();
-        // TODO code application logic here
+            //df.shitter();
+            //df.testStats();
+            //df.testRace();
+            // TODO code application logic here
+            //df.TestRoomloader();
+        df.testUI();
+        
     }
     
     public void shitter(){
@@ -55,16 +57,31 @@ public class DDFCombat {
         HashMap t = new HashMap();
         t.put(Enummer.attributes.Strength, 10);
         Race r = new Race(Enummer.Race.Dwarf);
-        
-        Player p = new Player("Bob",2,t,r);
+        Roleofplayer rop = new Roleofplayer();
+        Player p = new Player("Bob",2,t,r,rop);
         System.out.println(p.getName());
         System.out.println("Player Str"+p.getStr());
         System.out.println("HP" + p.getHp());
+        
         
     }
     
     public void testRace(){
         Race r = new Race(Enummer.Race.Dwarf);
         r.getRace();
+    }
+    
+    public void TestRoomloader() throws FileNotFoundException{
+        Filehandler f = new Filehandler();
+        f.loadRooms();
+    }
+    
+    public void testUI(){
+        UI i = new UI();
+        while(i.isRunning()){
+          
+            Scanner scan = new Scanner(System.in);
+            i.cit(scan.next());
+        }
     }
 }
