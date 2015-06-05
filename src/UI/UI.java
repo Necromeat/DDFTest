@@ -24,16 +24,7 @@ public class UI {
     public UI(){
         gc = new GameController();
         gc.StartGame();
-          HashMap t = new HashMap();
-        t.put(Enummer.attributes.Strength, 10);
-        Race r = new Race(Enummer.Race.Dwarf);
-        Roleofplayer rop = new Roleofplayer();
-        Player p = new Player("Bob",2,t,r,rop);
-        System.out.println(p.getName());
-        System.out.println("Player Str"+p.getStr());
-        System.out.println("HP" + p.getHp());
-        gc.addPlayer(p);
-        
+        testStats();
     }
     
     public void cit(String command){
@@ -97,6 +88,25 @@ public class UI {
         return running;
     }
     
+    
+    final void testStats(){
+        HashMap t = new HashMap();
+        t.put(Enummer.attributes.Strength, 10);
+        t.put(Enummer.attributes.Constituion, 10);
+        t.put(Enummer.attributes.Charisma, 10);
+        t.put(Enummer.attributes.Agility, 10);
+        t.put(Enummer.attributes.Wisdom, 10);
+        t.put(Enummer.attributes.Intellegence, 10);
+        Race r = new Race(Enummer.Race.Dwarf);
+        Roleofplayer rop = new Roleofplayer();
+        Player p = new Player("Bob",2,t,r,rop);
+        gc.addPlayer(p);
+        System.out.println(p.getName());
+        System.out.println("Player Str"+p.getStr());
+        System.out.println("HP" + p.getHp());
+        
+        
+    }
     
     
       

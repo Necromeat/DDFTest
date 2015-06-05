@@ -29,7 +29,8 @@ public class DungeonMap {
     }
     
     public void moveIntoNextRoom(Room activeroom){
-        this.currentRoom = activeroom;                     
+        this.currentRoom = activeroom;            
+        
         setter();
         
    }

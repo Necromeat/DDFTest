@@ -21,7 +21,7 @@ public interface Combatinterface<E extends Player,B extends Monster,C> {
     void Rolecommands(Enum Role);
     void sortCombatents();
     boolean playerDefeated();
-    boolean monsetDefeated();
+    boolean monsterDefeated();
     
     
     

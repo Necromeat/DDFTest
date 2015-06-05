@@ -22,7 +22,9 @@ import map.Room;
 public class GameController {
     private Filehandler f = new Filehandler();
     private ArrayList<Player>players = new ArrayList<>();
+    private ArrayList<Monster>monsters = new ArrayList<>();
     private DungeonMap dm;
+    private Combatter com = new Combatter();
      
     public GameController() {
         
@@ -45,7 +47,7 @@ public class GameController {
     public void Move(Enum move){
         dm.Move(move);
         if(dm.getCurrentRoom().hasMonster()){
-            
+            com.fight(players, monsters, players);
         }
     }
     
@@ -109,5 +111,9 @@ public class GameController {
     
     public String getPlayerName(Player p){
         return p.getName();
+    }
+    
+    public void addMonsters(Monster a){
+        monsters.add(a);
     }
 }

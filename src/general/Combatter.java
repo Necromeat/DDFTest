@@ -9,12 +9,15 @@ import ddfplayer.Player;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 /**
  *
  * @author Andrew
  */
 public class Combatter implements Combatinterface {
     private ArrayList<Player> playerArray = new ArrayList<>();
+    private Player activePlayer;
+    private Monster activeMonster;
     private ArrayList<Monster> monsters = new ArrayList<>();
     private ArrayList<Characterado> characters = new ArrayList<>();
 
@@ -25,6 +28,7 @@ public class Combatter implements Combatinterface {
 
     @Override
     public void fight(List players, List monster, List NPC) {
+            Random ran = new Random();
         for (Object player : players) {
             this.playerArray.add((Player) player);
         }
@@ -32,8 +36,20 @@ public class Combatter implements Combatinterface {
             this.monsters.add((Monster)monsterer);
         }
 
-        int wsp = playerArray.get(0).getWeaponSkill();
-        int wsm = monsters.get(0).getWeaponSkill();
+        activePlayer = playerArray.get(0);
+        activeMonster = monsters.get(0);
+        
+        while(playerDefeated() && monsterDefeated()){
+            if(activePlayer.getWeaponSkill() > activeMonster.getWeaponSkill()){
+                if(ran.nextInt(6)>= 3){
+                    System.out.println("Hit");
+                    activeMonster.setHp(activePlayer.getDamage());
+                    System.out.println("Monster has " + activeMonster.getHp()+"Left");
+                }else{
+                    System.out.println("Player missed.");
+                }
+            }
+        }
         
     }
 
@@ -49,12 +65,13 @@ public class Combatter implements Combatinterface {
 
     @Override
     public boolean playerDefeated() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+        return activePlayer.getHp() >= 0;
     }
 
     @Override
-    public boolean monsetDefeated() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean monsterDefeated() {
+        return activeMonster.getHp() >= 0;
     }
     
 }
