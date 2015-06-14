@@ -31,9 +31,8 @@ public class Monster  extends Characterado implements Monsterinterface {
     public Monster() {
     }
 
-    public Monster(String name, Location loc, HashMap attributes, int id, int hp) {
+    public Monster(String name, HashMap attributes, int id, int hp) {
         this.name = name;
-        this.loc = loc;
         this.attributes = attributes;
         this.id = id;
         this.hp = hp;

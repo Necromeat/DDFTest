@@ -39,11 +39,12 @@ public class Combatter implements Combatinterface {
         activePlayer = playerArray.get(0);
         activeMonster = monsters.get(0);
         
-        while(playerDefeated() && monsterDefeated()){
+        while(!playerDefeated() && !monsterDefeated()){
             if(activePlayer.getWeaponSkill() > activeMonster.getWeaponSkill()){
                 if(ran.nextInt(6)>= 3){
                     System.out.println("Hit");
-                    activeMonster.setHp(activePlayer.getDamage());
+                    int tempHp = activeMonster.getHp()-activePlayer.getDamage();
+                    activeMonster.setHp(tempHp);
                     System.out.println("Monster has " + activeMonster.getHp()+"Left");
                 }else{
                     System.out.println("Player missed.");
@@ -66,12 +67,12 @@ public class Combatter implements Combatinterface {
     @Override
     public boolean playerDefeated() {
     
-        return activePlayer.getHp() >= 0;
+        return activePlayer.getHp() <= 0;
     }
 
     @Override
     public boolean monsterDefeated() {
-        return activeMonster.getHp() >= 0;
+        return activeMonster.getHp() <= 0;
     }
     
 }

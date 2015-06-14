@@ -28,7 +28,7 @@ public class Player extends Characterado implements Playerinterface {
     private List<Item> equipment;
     private Enum alligenmet;
     private Race race;
-    private HashMap attributes;
+    private HashMap<Enum,Integer> attributes;
     private List<Item> inventory;
     private int id;
     private int hp; 
@@ -54,6 +54,7 @@ public class Player extends Characterado implements Playerinterface {
         this.hp = hp;
         this.race = race;
         this.rop = rp;
+        updateStats();
         setHP();
     }
    
@@ -138,40 +139,22 @@ public class Player extends Characterado implements Playerinterface {
     }
 
     @Override
-    public int getStr() {
-    int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Strength)+ race.getRaceStrMod();
-    return i;
-    }
+    public int getStr() { return attributes.get(Enummer.attributes.Strength);  }
 
     @Override
-    public int getCon() {int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Constituion)+ race.getRaceConMod();
-    return i;}
+    public int getCon() {return attributes.get(Enummer.attributes.Constituion);}
 
     @Override
-    public int getAgil() {
-      int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Agility)+ race.getRaceAgiMod();
-    return i;
-    }
+    public int getAgil() {return attributes.get(Enummer.attributes.Agility); }
 
     @Override
-    public int getInt() {
-        int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Intellegence)+ race.getRaceIntMod();
-    return i;
-    }
+    public int getInt() {return attributes.get(Enummer.attributes.Intellegence);}
 
     @Override
-    public int getWis() { int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Wisdom)+ race.getRaceWisMod();
-    return i;}
+    public int getWis() { return attributes.get(Enummer.attributes.Wisdom);}
 
     @Override
-    public int getChar() { int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Charisma)+ race.getRaceCharMod();
-    return i;}
+    public int getChar() { return attributes.get(Enummer.attributes.Charisma);}
     
    
 
@@ -185,18 +168,10 @@ public class Player extends Characterado implements Playerinterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-     final void buildStats(){
-        attributes.put(Enummer.attributes.Strength, 10);
-        attributes.put("Agility", 10);
-        attributes.put("Constitution", 10);
-        attributes.put("Wisdom", 10);
-        attributes.put("Intellegence", 10);
-        attributes.put("Charsima", 10);
-                
-    }
+     
      
      int modifierCalculation(int attribute){
-         int i = (attribute-10)/2;
+         int i = (attribute-5)%2;
          return i;
      }
      
@@ -221,4 +196,26 @@ public class Player extends Characterado implements Playerinterface {
         Random ran = new Random();
         return ran.nextInt(12)+1+modifierCalculation(getStr());
     }
+
+    @Override
+    public String toString() {
+        return "Player{" + "name=" + name + ", race=" + race.toString() + ", attributes=" + attributes + ", hp=" + hp + '}';
+    }
+    
+    final void updateStats(){
+        int str = attributes.get(Enummer.attributes.Strength)+race.getRaceStrMod();
+        int agl = attributes.get(Enummer.attributes.Agility)+race.getRaceAgiMod();
+        int intle = attributes.get(Enummer.attributes.Intellegence)+race.getRaceIntMod();
+        int charisma = attributes.get(Enummer.attributes.Charisma)+race.getRaceCharMod();
+        int wisdom = attributes.get(Enummer.attributes.Wisdom)+race.getRaceWisMod();
+        
+        attributes.put(Enummer.attributes.Strength, str);
+        attributes.put(Enummer.attributes.Agility, agl);
+        attributes.put(Enummer.attributes.Intellegence, intle);
+        attributes.put(Enummer.attributes.Charisma, charisma);
+        attributes.put(Enummer.attributes.Wisdom, wisdom);
+        
+        
+    }
+    
 }

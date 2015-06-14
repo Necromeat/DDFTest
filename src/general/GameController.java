@@ -5,10 +5,12 @@
  */
 package general;
 
+import data.Enummer;
 import data.Filehandler;
 import ddfplayer.Player;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,9 +27,12 @@ public class GameController {
     private ArrayList<Monster>monsters = new ArrayList<>();
     private DungeonMap dm;
     private Combatter com = new Combatter();
+    private Monster m = new Monster();
+    
      
     public GameController() {
         
+      testStats();
         try {
             f.loadRooms();
             
@@ -45,10 +50,18 @@ public class GameController {
     }
     
     public void Move(Enum move){
-        dm.Move(move);
+        System.out.println("You moved from " + dm.getCurrentRoom().getName());
         if(dm.getCurrentRoom().hasMonster()){
-            com.fight(players, monsters, players);
+            System.out.println("You encounter an "+ dm.getCurrentRoom().getSpecificMonster());
+           com.fight(players, monsters, players);
+           if(com.monsterDefeated()){
+              dm.getCurrentRoom().setSpecific("1000.1");
+           }
         }
+         
+        dm.Move(move);
+        System.out.println("Into "+ dm.getCurrentRoom().getName());
+       
     }
     
     public void room(){
@@ -99,11 +112,7 @@ public class GameController {
           dm = new DungeonMap(f.getRooms());
     }
     
-    public void Combat(List<Player> players,List<Monster> monsters){
-        
-        Combatter com = new Combatter();
-        com.fight(players, monsters, players);
-    }
+    
     
     public void addPlayer(Player p){
         players.add(p);
@@ -115,5 +124,27 @@ public class GameController {
     
     public void addMonsters(Monster a){
         monsters.add(a);
+    }
+    
+    final void testStats(){
+        HashMap t = new HashMap();
+        t.put(Enummer.attributes.Strength, 10);
+        t.put(Enummer.attributes.Constituion, 10);
+        t.put(Enummer.attributes.Charisma, 10);
+        t.put(Enummer.attributes.Agility, 10);
+        t.put(Enummer.attributes.Wisdom, 10);
+        t.put(Enummer.attributes.Intellegence, 10);
+        this.m = new Monster("Goblin",t,2,10000);
+        addMonsters(m);
+        
+    }
+    
+   
+    public void printActivePlayer(){
+        System.out.println(players.get(0).toString());
+    }
+    
+    public boolean combatActive(){
+        return !com.monsterDefeated() && !com.playerDefeated();
     }
 }

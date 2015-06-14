@@ -22,9 +22,11 @@ public class UI {
     GameController gc;
    
     public UI(){
+          
         gc = new GameController();
-        gc.StartGame();
         testStats();
+        gc.StartGame();
+      
     }
     
     public void cit(String command){
@@ -69,6 +71,9 @@ public class UI {
         if(command.equals("room")){
             gc.room();
         }
+        if(command.equals("stats")){
+            gc.printActivePlayer();
+        }
     }
     
  
@@ -98,12 +103,11 @@ public class UI {
         t.put(Enummer.attributes.Wisdom, 10);
         t.put(Enummer.attributes.Intellegence, 10);
         Race r = new Race(Enummer.Race.Dwarf);
-        Roleofplayer rop = new Roleofplayer();
+        Roleofplayer rop = new Roleofplayer(5);
+        
         Player p = new Player("Bob",2,t,r,rop);
+        p.setHp(10);
         gc.addPlayer(p);
-        System.out.println(p.getName());
-        System.out.println("Player Str"+p.getStr());
-        System.out.println("HP" + p.getHp());
         
         
     }

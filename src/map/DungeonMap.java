@@ -6,7 +6,6 @@
 package map;
 
 import data.Enummer;
-import ddfplayer.Player;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +21,9 @@ public class DungeonMap {
     public DungeonMap(List<Room> rooms){
         for(Room r : rooms){
             this.room.add(r);
+            if(r.hasMonster()){
+                System.out.println("Room has monster "+r.getName()+" " + "Monster " + r.getSpecificMonster()+ " Room number"+r.getRoomnumber());
+            }
         }
          
         

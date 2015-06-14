@@ -36,6 +36,12 @@ public class Room {
         
     }
 
+    public void setSpecific(String specific) {
+        this.specific = specific;
+    }
+    
+    
+
     public double getRoomnumber() {
         return roomnumber;
     }
@@ -144,4 +150,6 @@ public class Room {
         return !specific.equals("1000.1");
    
    }
+   
+  
 }

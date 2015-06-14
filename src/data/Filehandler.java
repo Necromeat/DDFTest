@@ -24,7 +24,7 @@ public class Filehandler {
     
     
     public void loadRooms() throws FileNotFoundException{
-         final String path= "F:\\Users\\Andrew\\Documents\\temp\\DDFm.csv";
+         final String path= "I:\\Documents\\temp\\temp\\DDFm.csv";
           String nextLine = "";
           String lineReader = "";
           Scanner fileScan = new Scanner(new FileInputStream(path)).useDelimiter("[!#!]");
@@ -56,7 +56,6 @@ public class Filehandler {
    
     
     double cast(String a){
-            System.out.println(a.toString());
             return Double.parseDouble(a); 
     }
 }

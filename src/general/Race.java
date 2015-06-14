@@ -65,7 +65,7 @@ public class Race implements Raceinterface{
     return racialenemy;
     }
     
-    void setRace(){
+    final void setRace(){
         if(race.equals(Enummer.Race.Dwarf)){
             setStr(2);
             setAgl(-2);

@@ -16,6 +16,8 @@ public class Roleofplayer {
     public Roleofplayer() {
     }
 
+          
+
     public Roleofplayer(int weaponskill) {
         this.weaponskill = weaponskill;
     }
