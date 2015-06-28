@@ -11,11 +11,9 @@ import ddfplayer.Player;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import map.DungeonMap;
-import map.Room;
 
 /**
  *
@@ -28,6 +26,7 @@ public class GameController {
     private DungeonMap dm;
     private Combatter com = new Combatter();
     private Monster m = new Monster();
+    private Weapon w = new Weapon();
     
      
     public GameController() {
@@ -41,6 +40,7 @@ public class GameController {
             Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
         }
       newDungeon();
+      buildItems();
     }
     
     public void StartGame(){
@@ -51,7 +51,7 @@ public class GameController {
     
     public void Move(Enum move){
         System.out.println("You moved from " + dm.getCurrentRoom().getName());
-        if(dm.getCurrentRoom().hasMonster()){
+        if(dm.getCurrentRoom().hasMonster() && m.getAggression().equals(Enummer.aggression.aggressive)){
             System.out.println("You encounter an "+ dm.getCurrentRoom().getSpecificMonster());
            com.fight(players, monsters, players);
            if(com.monsterDefeated()){
@@ -115,6 +115,7 @@ public class GameController {
     
     
     public void addPlayer(Player p){
+        p.addItemtoEquipment(w);
         players.add(p);
     }
     
@@ -128,13 +129,15 @@ public class GameController {
     
     final void testStats(){
         HashMap t = new HashMap();
-        t.put(Enummer.attributes.Strength, 10);
-        t.put(Enummer.attributes.Constituion, 10);
-        t.put(Enummer.attributes.Charisma, 10);
-        t.put(Enummer.attributes.Agility, 10);
-        t.put(Enummer.attributes.Wisdom, 10);
-        t.put(Enummer.attributes.Intellegence, 10);
-        this.m = new Monster("Goblin",t,2,10000);
+        t.put(Enummer.attributes.strength, 10);
+        t.put(Enummer.attributes.constituion, 10);
+        t.put(Enummer.attributes.charisma, 10);
+        t.put(Enummer.attributes.agility, 10);
+        t.put(Enummer.attributes.wisdom, 10);
+        t.put(Enummer.attributes.intellegence, 10);
+        Weapon w1 = new Weapon("Short sword", "Sword of short", 10, 2,Enummer.SlotFiller.onehand,Enummer.Equipment.martial, Enummer.Equipment.weapon);
+        this.m = new Monster("Goblin",t,2,10,Enummer.aggression.aggressive);
+        m.addItemtoEquipment(w1);
         addMonsters(m);
         
     }
@@ -147,4 +150,8 @@ public class GameController {
     public boolean combatActive(){
         return !com.monsterDefeated() && !com.playerDefeated();
     }
+    
+    private void buildItems(){
+        w = new Weapon("LongSword", "Sword of long", 10, 5,Enummer.SlotFiller.onehand,Enummer.Equipment.martial, Enummer.Equipment.weapon);
+         }
 }

@@ -90,19 +90,19 @@ public class DungeonMap {
     
     public void Move(Enum move){
         
-        if(move == Enummer.Moves.North && currentRoom.isEntranceNorth()){
+        if(move == Enummer.Moves.north && currentRoom.isEntranceNorth()){
           setCurrentRoomById(currentRoom.getRoomNorth());
         }
         
-        if(move == Enummer.Moves.East && currentRoom.isEntranceEast()){
+        if(move == Enummer.Moves.east && currentRoom.isEntranceEast()){
              setCurrentRoomById(currentRoom.getRoomEast());
         }
         
-        if(move == Enummer.Moves.South && currentRoom.isEntranceSouth()){
+        if(move == Enummer.Moves.south && currentRoom.isEntranceSouth()){
              setCurrentRoomById(currentRoom.getRoomSouth());
         }
         
-        if(move == Enummer.Moves.West && currentRoom.isEntranceWest()){
+        if(move == Enummer.Moves.west && currentRoom.isEntranceWest()){
              setCurrentRoomById(currentRoom.getRoomWest());
         }
         if(move == Enummer.Moves.down && currentRoom.isStarisdown()){

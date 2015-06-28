@@ -22,4 +22,5 @@ public interface Raceinterface {
     int getRaceCharMod();
     List<Enum> getAlligenments();
     List<Enum> getRacialEnemys();
+    List<Enum> getEquipmentSlots();
 }

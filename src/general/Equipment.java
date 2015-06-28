@@ -9,11 +9,8 @@ package general;
  *
  * @author Andrew
  */
-public abstract class Item {
+public class Equipment {
     
-    abstract public String getName();
-    abstract public int getValue();
-    abstract public String getDescription();
-    abstract public Enum getItemType();
+    
     
 }

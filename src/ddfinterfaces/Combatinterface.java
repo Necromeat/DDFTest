@@ -22,6 +22,7 @@ public interface Combatinterface<E extends Player,B extends Monster,C> {
     void sortCombatents();
     boolean playerDefeated();
     boolean monsterDefeated();
+    boolean fightActive();
     
     
     

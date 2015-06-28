@@ -37,5 +37,8 @@ public abstract class Characterado {
     public abstract void updateInv(List<Item> items);
     public abstract int getWeaponSkill();
     public abstract int getDefense();
+    public abstract void addItemtoInventory(Item i);    
+    public abstract void addItemtoEquipment(Item i);
+    public abstract int getDamage();
     
 }

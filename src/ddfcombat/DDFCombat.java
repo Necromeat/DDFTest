@@ -42,7 +42,7 @@ public class DDFCombat {
     
     
     public void testRace(){
-        Race r = new Race(Enummer.Race.Dwarf);
+        Race r = new Race(Enummer.Race.dwarf);
         r.getRace();
     }
     

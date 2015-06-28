@@ -7,6 +7,7 @@ package general;
 
 import data.Enummer;
 import ddfinterfaces.Monsterinterface;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,23 +21,25 @@ import map.Location;
 public class Monster  extends Characterado implements Monsterinterface {
     private String name;
     private Location loc;
-    private List<Item> equipment;
+    private List<Item> equipment = new ArrayList();
     private Enum alligenmet;
+    private Enum aggrassion;
     private Race race;
-    private HashMap attributes;
-    private List<Item> inventory;
+    private HashMap<Enum,Integer> attributes;
+    private List<Item> inventory = new ArrayList();
     private int id;
     private int hp; 
 
     public Monster() {
     }
 
-    public Monster(String name, HashMap attributes, int id, int hp) {
+    public Monster(String name, HashMap attributes, int id, int hp,Enum aggrassion) {
         this.name = name;
         this.attributes = attributes;
         this.id = id;
         this.hp = hp;
         setHP();
+        this.aggrassion = aggrassion;
     }
     
     
@@ -100,42 +103,23 @@ public class Monster  extends Characterado implements Monsterinterface {
     }
 
     @Override
-    public int getStr() {
-    int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Strength);
-    return i;
-    }
+    public int getStr() { return attributes.get(Enummer.attributes.strength);  }
 
     @Override
-    public int getCon() {int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Constituion);
-    return i;}
+    public int getCon() {return attributes.get(Enummer.attributes.constituion);}
 
     @Override
-    public int getAgil() {
-      int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Agility);
-    return i;
-    }
+    public int getAgil() {return attributes.get(Enummer.attributes.agility); }
 
     @Override
-    public int getInt() {
-        int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Intellegence);
-    return i;
-    }
+    public int getInt() {return attributes.get(Enummer.attributes.intellegence);}
 
     @Override
-    public int getWis() { int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Wisdom);
-    return i;}
+    public int getWis() { return attributes.get(Enummer.attributes.wisdom);}
 
     @Override
-    public int getChar() { int i = 0;
-    i = (Integer)attributes.get(Enummer.attributes.Charisma);
-    return i;}
+    public int getChar() { return attributes.get(Enummer.attributes.charisma);}
     
-   
 
     @Override
     public void updateInv(List<Item> items) {
@@ -146,19 +130,10 @@ public class Monster  extends Characterado implements Monsterinterface {
     public void setName(String name) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-     final void buildStats(){
-        attributes.put(Enummer.attributes.Strength, 12);
-        attributes.put("Agility", 12);
-        attributes.put("Constitution", 12);
-        attributes.put("Wisdom", 12);
-        attributes.put("Intellegence", 12);
-        attributes.put("Charsima", 12);
-                
-    }
+       
      
      int modifierCalculation(int attribute){
-         int i = (attribute-10)/2;
+         int i = (attribute-5)%2;
          return i;
      }
      
@@ -191,7 +166,7 @@ public class Monster  extends Characterado implements Monsterinterface {
 
     @Override
     public Enum getAggression() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return aggrassion;
     }
 
     @Override
@@ -202,9 +177,29 @@ public class Monster  extends Characterado implements Monsterinterface {
     @Override
     public int getDamage() {
         Random ran = new Random();
-        int i = ran.nextInt(10)+1+modifierCalculation(getStr());
-        return i ;
+        for(Item i :equipment){
+            if(i.getItemType().equals(Enummer.Equipment.weapon)){
+               
+                Weapon w = (Weapon)i;
+                return w.getDamage()+modifierCalculation(getStr());
+            }
+        }
+        
+        return ran.nextInt(3)+1+modifierCalculation(getStr());
+        
+        
     }
+
+    @Override
+    public void addItemtoInventory(Item i) {
+        inventory.add(i);}
+
+    @Override
+    public void addItemtoEquipment(Item i) {
+        equipment.add(i);
+    }
+
+   
     
     
 }

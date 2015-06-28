@@ -11,6 +11,8 @@ import general.Characterado;
 import general.Item;
 import general.Race;
 import general.Roleofplayer;
+import general.Weapon;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +27,11 @@ public class Player extends Characterado implements Playerinterface {
     private String name;
     private Location loc;
     private Roleofplayer rop;
-    private List<Item> equipment;
+    private List<Item> equipment = new ArrayList<>();
     private Enum alligenmet;
     private Race race;
     private HashMap<Enum,Integer> attributes;
-    private List<Item> inventory;
+    private List<Item> inventory = new ArrayList<>();;
     private int id;
     private int hp; 
         
@@ -139,22 +141,22 @@ public class Player extends Characterado implements Playerinterface {
     }
 
     @Override
-    public int getStr() { return attributes.get(Enummer.attributes.Strength);  }
+    public int getStr() { return attributes.get(Enummer.attributes.strength);  }
 
     @Override
-    public int getCon() {return attributes.get(Enummer.attributes.Constituion);}
+    public int getCon() {return attributes.get(Enummer.attributes.constituion);}
 
     @Override
-    public int getAgil() {return attributes.get(Enummer.attributes.Agility); }
+    public int getAgil() {return attributes.get(Enummer.attributes.agility); }
 
     @Override
-    public int getInt() {return attributes.get(Enummer.attributes.Intellegence);}
+    public int getInt() {return attributes.get(Enummer.attributes.intellegence);}
 
     @Override
-    public int getWis() { return attributes.get(Enummer.attributes.Wisdom);}
+    public int getWis() { return attributes.get(Enummer.attributes.wisdom);}
 
     @Override
-    public int getChar() { return attributes.get(Enummer.attributes.Charisma);}
+    public int getChar() { return attributes.get(Enummer.attributes.charisma);}
     
    
 
@@ -194,7 +196,15 @@ public class Player extends Characterado implements Playerinterface {
     
     public int getDamage(){
         Random ran = new Random();
-        return ran.nextInt(12)+1+modifierCalculation(getStr());
+        for(Item i :equipment){
+            if(i.getItemType().equals(Enummer.Equipment.weapon)){
+               
+                Weapon w = (Weapon)i;
+                return w.getDamage()+modifierCalculation(getStr());
+            }
+        }
+        
+        return ran.nextInt(4)+1+modifierCalculation(getStr());
     }
 
     @Override
@@ -203,19 +213,29 @@ public class Player extends Characterado implements Playerinterface {
     }
     
     final void updateStats(){
-        int str = attributes.get(Enummer.attributes.Strength)+race.getRaceStrMod();
-        int agl = attributes.get(Enummer.attributes.Agility)+race.getRaceAgiMod();
-        int intle = attributes.get(Enummer.attributes.Intellegence)+race.getRaceIntMod();
-        int charisma = attributes.get(Enummer.attributes.Charisma)+race.getRaceCharMod();
-        int wisdom = attributes.get(Enummer.attributes.Wisdom)+race.getRaceWisMod();
+        int str = attributes.get(Enummer.attributes.strength)+race.getRaceStrMod();
+        int agl = attributes.get(Enummer.attributes.agility)+race.getRaceAgiMod();
+        int intle = attributes.get(Enummer.attributes.intellegence)+race.getRaceIntMod();
+        int charisma = attributes.get(Enummer.attributes.charisma)+race.getRaceCharMod();
+        int wisdom = attributes.get(Enummer.attributes.wisdom)+race.getRaceWisMod();
         
-        attributes.put(Enummer.attributes.Strength, str);
-        attributes.put(Enummer.attributes.Agility, agl);
-        attributes.put(Enummer.attributes.Intellegence, intle);
-        attributes.put(Enummer.attributes.Charisma, charisma);
-        attributes.put(Enummer.attributes.Wisdom, wisdom);
+        attributes.put(Enummer.attributes.strength, str);
+        attributes.put(Enummer.attributes.agility, agl);
+        attributes.put(Enummer.attributes.intellegence, intle);
+        attributes.put(Enummer.attributes.charisma, charisma);
+        attributes.put(Enummer.attributes.wisdom, wisdom);
         
         
+    }
+    
+    @Override
+    public void addItemtoInventory(Item i){
+        inventory.add(i);
+    }
+    
+    @Override
+    public void addItemtoEquipment(Item i){
+        equipment.add(i);
     }
     
 }

@@ -41,7 +41,7 @@ public class UI {
         }
         
         if(command.equals("moves")){
-            printMoves();
+            gc.ShowMoves();
             
             
         }
@@ -49,24 +49,13 @@ public class UI {
             running = false;
         }
         
-        if(command.equals("north")){
-            gc.Move(Enummer.Moves.North);
+        for(Enum e : Enummer.Moves.values()){
+            if(command.equals(e.toString())){
+                gc.Move(e);
+            }
         }
-        if(command.equals("south")){
-             gc.Move(Enummer.Moves.South);
-        }
-        if(command.equals("west")){
-                   gc.Move(Enummer.Moves.West);
-        }
-        if(command.equals("east")){
-                  gc.Move(Enummer.Moves.East);
-        }
-        if(command.equals("up")){
-                  gc.Move(Enummer.Moves.up);
-        }
-        if(command.equals("down")){
-                gc.Move(Enummer.Moves.down);
-        }
+                      
+      
         
         if(command.equals("room")){
             gc.room();
@@ -78,15 +67,10 @@ public class UI {
     
  
     void printEnummerHelpValues(){
-         for(Enum e: Enummer.help.values()){
-                    System.out.println(e.toString());
-                }
-    }
-    
-    void printMoves(){
-        gc.ShowMoves();
         
     }
+    
+    
 
     
     public boolean isRunning() {
@@ -96,13 +80,13 @@ public class UI {
     
     final void testStats(){
         HashMap t = new HashMap();
-        t.put(Enummer.attributes.Strength, 10);
-        t.put(Enummer.attributes.Constituion, 10);
-        t.put(Enummer.attributes.Charisma, 10);
-        t.put(Enummer.attributes.Agility, 10);
-        t.put(Enummer.attributes.Wisdom, 10);
-        t.put(Enummer.attributes.Intellegence, 10);
-        Race r = new Race(Enummer.Race.Dwarf);
+        t.put(Enummer.attributes.strength, 10);
+        t.put(Enummer.attributes.constituion, 10);
+        t.put(Enummer.attributes.charisma, 10);
+        t.put(Enummer.attributes.agility, 10);
+        t.put(Enummer.attributes.wisdom, 10);
+        t.put(Enummer.attributes.intellegence, 10);
+        Race r = new Race(Enummer.Race.dwarf);
         Roleofplayer rop = new Roleofplayer(5);
         
         Player p = new Player("Bob",2,t,r,rop);
@@ -113,5 +97,5 @@ public class UI {
     }
     
     
-      
+    
 }
