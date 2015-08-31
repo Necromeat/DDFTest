@@ -7,14 +7,17 @@ package ddfcombat;
 
 import UI.UI;
 import data.Enummer;
-import data.Filehandler;
+//import data.Filehandler;
 import ddfplayer.Player;
 import java.util.HashMap;
 import general.Race;
 import general.Roleofplayer;
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,12 +50,17 @@ public class DDFCombat {
     }
     
     public void TestRoomloader() throws FileNotFoundException{
-        Filehandler f = new Filehandler();
-        f.loadRooms();
+//        Filehandler f = new Filehandler();
+//        f.loadRooms();
     }
     
     public void testUI(){
-        UI i = new UI();
+        UI i = null;
+        try {
+            i = new UI();
+        } catch (SQLException ex) {
+            Logger.getLogger(DDFCombat.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         while(i.isRunning()){
           

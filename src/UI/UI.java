@@ -10,6 +10,7 @@ import ddfplayer.Player;
 import general.GameController;
 import general.Race;
 import general.Roleofplayer;
+import java.sql.SQLException;
 import java.util.HashMap;
 import map.Room;
 
@@ -21,7 +22,7 @@ public class UI {
     boolean running = true;
     GameController gc;
    
-    public UI(){
+    public UI() throws SQLException{
           
         gc = new GameController();
         testStats();

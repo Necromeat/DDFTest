@@ -5,40 +5,44 @@
  */
 package general;
 
+import data.DungeonsGateway;
 import data.Enummer;
-import data.Filehandler;
+//import data.Filehandler;
 import ddfplayer.Player;
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import map.DungeonMap;
+import map.Room;
 
 /**
  *
  * @author Andrew
  */
 public class GameController {
-    private Filehandler f = new Filehandler();
+//    private Filehandler f = new Filehandler();
     private ArrayList<Player>players = new ArrayList<>();
     private ArrayList<Monster>monsters = new ArrayList<>();
     private DungeonMap dm;
     private Combatter com = new Combatter();
     private Monster m = new Monster();
     private Weapon w = new Weapon();
+   
     
      
-    public GameController() {
-        
+    public GameController() throws SQLException {
+        //d.getDungeonroomsCollection();
       testStats();
-        try {
-            f.loadRooms();
-            
-            System.out.println("Map loaded");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+////            f.loadRooms();
+//            
+//            System.out.println("Map loaded");
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
       newDungeon();
       buildItems();
     }
@@ -108,8 +112,19 @@ public class GameController {
         
     }
     
-    private void newDungeon(){
-          dm = new DungeonMap(f.getRooms());
+    private void newDungeon()  throws SQLException{
+       DungeonsGateway dg = new DungeonsGateway();
+       ArrayList<Room> list;
+       list = (ArrayList<Room>) dg.loadDungeonsAll();
+       for(Room r : list){
+           System.out.println("++++++++++++++++++++++++++++++++++");
+                      System.out.println(r.toString());
+           System.out.println("------------------------------------");
+       }
+     
+         
+       dm = new DungeonMap(list);
+
     }
     
     
@@ -154,4 +169,6 @@ public class GameController {
     private void buildItems(){
         w = new Weapon("LongSword", "Sword of long", 10, 5,Enummer.SlotFiller.onehand,Enummer.Equipment.martial, Enummer.Equipment.weapon);
          }
+    
+    
 }

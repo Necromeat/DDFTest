@@ -15,10 +15,10 @@ package map;
 public class Room {
     private String name,specific;
     private String desrip;
-    private double roomNorth, roomEast, roomSouth,roomWest,roomnumber,roomup,roomdown; 
+    private int roomNorth, roomEast, roomSouth,roomWest,roomnumber,roomup,roomdown; 
     private boolean entranceNorth, entranceSouth,entranceEast,entranceWest,stairsup,stairsdown;
     
-    public Room(double roomnumber, String name,String desrip,double roomNorht,double roomSouth,double roomEast,double roomWest,double up,double down,String Random,String specifik,String... String){
+    public Room(int roomnumber, String name,String desrip,int roomNorht,int roomSouth,int roomEast,int roomWest,int up,int down,String Random,String specifik,String... String){
         this.roomNorth = roomNorht;
         this.roomEast = roomEast;
         this.roomSouth = roomSouth;
@@ -29,6 +29,12 @@ public class Room {
         this.desrip = desrip;
         this.roomnumber = roomnumber;
         this.specific = specifik;
+        entranceNorth = false;
+        entranceSouth = false;
+        entranceEast = false;
+        entranceWest = false;
+        stairsup = false;
+        stairsdown = false;
         
     }
     
@@ -42,7 +48,7 @@ public class Room {
     
     
 
-    public double getRoomnumber() {
+    public int getRoomnumber() {
         return roomnumber;
     }
 
@@ -62,27 +68,27 @@ public class Room {
         this.entranceWest = entranceWest;
     }
 
-    public double getRoomNorth() {
+    public int getRoomNorth() {
         return roomNorth;
     }
 
-    public double getRoomEast() {
+    public int getRoomEast() {
         return roomEast;
     }
 
-    public double getRoomSouth() {
+    public int getRoomSouth() {
         return roomSouth;
     }
 
-    public double getRoomWest() {
+    public int getRoomWest() {
         return roomWest;
     }
 
-    public double getRoomup() {
+    public int getRoomup() {
         return roomup;
     }
 
-    public double getRoomdown() {
+    public int getRoomdown() {
         return roomdown;
     }
 
@@ -128,28 +134,71 @@ public class Room {
     public boolean isStarisdown() {
         return stairsdown;
     }
-    public void resetChoices(){
-        entranceNorth = false;
-        entranceSouth = false;
-        entranceEast = false;
-        entranceWest = false;
-        stairsup = false;
-        stairsdown = false;
+//    public void resetChoices(){
+//        entranceNorth = false;
+//        entranceSouth = false;
+//        entranceEast = false;
+//        entranceWest = false;
+//        stairsup = false;
+//        stairsdown = false;
+//    }
+
+    @Override
+    public String toString() {
+        return "Room{" + "name=" + name + ", specific=" + specific + ", desrip=" + desrip + ", roomNorth=" + roomNorth + ", roomEast=" + roomEast + ", roomSouth=" + roomSouth + ", roomWest=" + roomWest + ", roomnumber=" + roomnumber + ", roomup=" + roomup + ", roomdown=" + roomdown + ", entranceNorth=" + entranceNorth + ", entranceSouth=" + entranceSouth + ", entranceEast=" + entranceEast + ", entranceWest=" + entranceWest + ", stairsup=" + stairsup + ", stairsdown=" + stairsdown + '}';
     }
     
-    public String toString(){
-        return "\nYou are standing in: " + name +"\nIt looks like:" + desrip +""+entranceNorth+":"+entranceSouth;
-        
-    }
+   
     
     public String getSpecificMonster(){
         return specific;
     }
     
    public boolean hasMonster(){
-        return !specific.equals("1000.1");
+       if(specific == null){
+           return false;
+       }
+      
+        return true;
    
    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDesrip(String desrip) {
+        this.desrip = desrip;
+    }
+
+    public void setRoomNorth(int roomNorth) {
+        this.roomNorth = roomNorth;
+    }
+
+    public void setRoomEast(int roomEast) {
+        this.roomEast = roomEast;
+    }
+
+    public void setRoomSouth(int roomSouth) {
+        this.roomSouth = roomSouth;
+    }
+
+    public void setRoomWest(int roomWest) {
+        this.roomWest = roomWest;
+    }
+
+    public void setRoomnumber(int roomnumber) {
+        this.roomnumber = roomnumber;
+    }
+
+    public void setRoomup(int roomup) {
+        this.roomup = roomup;
+    }
+
+    public void setRoomdown(int roomdown) {
+        this.roomdown = roomdown;
+    }
+   
    
   
 }
