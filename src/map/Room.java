@@ -134,14 +134,7 @@ public class Room {
     public boolean isStarisdown() {
         return stairsdown;
     }
-//    public void resetChoices(){
-//        entranceNorth = false;
-//        entranceSouth = false;
-//        entranceEast = false;
-//        entranceWest = false;
-//        stairsup = false;
-//        stairsdown = false;
-//    }
+
 
     @Override
     public String toString() {

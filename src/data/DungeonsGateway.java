@@ -89,6 +89,9 @@ public class DungeonsGateway {
         }
         r.setDesrip(rs.getString(("room_Description")));
         r.setName(rs.getString("room_name"));
+        if(rs.getInt("Monster_Specific") != 99){
+                   r.setSpecific(""+rs.getInt("Monster_Specific"));
+        }
         list.add(r);
             
             

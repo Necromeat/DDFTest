@@ -33,7 +33,7 @@ public class DungeonMap {
     public void moveIntoNextRoom(Room activeroom){
         this.currentRoom = activeroom;            
         
-//        setter();
+
         
    }
     
@@ -41,40 +41,6 @@ public class DungeonMap {
         return currentRoom;
     }
     
-    
-//    void setter(){
-//        if(!currentRoom.isEntranceNorth()){
-//            currentRoom.setEntranceNorth(false);
-//        }else{
-//            currentRoom.setEntranceNorth(true);
-//        }
-//        if(!currentRoom.isEntranceSouth()){
-//            currentRoom.setEntranceSouth(false);
-//        }else{
-//            currentRoom.setEntranceSouth(true);
-//        }
-//        if(currentRoom.getRoomEast() == 1000.1){
-//            currentRoom.setEntranceEast(false);
-//        }else{
-//            currentRoom.setEntranceEast(true);
-//        }
-//        if(currentRoom.getRoomWest() == 1000.1){
-//            currentRoom.setEntranceWest(false);
-//        }else{
-//            currentRoom.setEntranceWest(true);
-//        }
-//        if(currentRoom.getRoomdown()== 1000.1){
-//            currentRoom.setStairsdown(false);
-//        }else{
-//            currentRoom.setStairsdown(true);
-//        }
-//        if(currentRoom.getRoomup() == 1000.1){
-//            currentRoom.setStairsup(false);
-//        }else{
-//            currentRoom.setStairsup(true);
-//        }
-//        
-//    }
     
     public void setStartRoomPlayer(String name){
        if(!name.equals("start")){

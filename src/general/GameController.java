@@ -73,41 +73,43 @@ public class GameController {
     }
     
     public void ShowMoves(){
-        
+        String canMove = "You can Move: ";
+        String cannotMove = "You cannot Move: ";        
+           
         if(dm.getCurrentRoom().isEntranceEast()){
-            System.out.println("You can move East");
+            System.out.println(canMove+Enummer.Moves.east.toString());
         }else{
-            System.out.println("You cannot go East");
+            System.out.println(cannotMove+Enummer.Moves.east.toString());
         }
         if(dm.getCurrentRoom().isEntranceNorth()){
-            System.out.println("You can Move North");
+            System.out.println(canMove + Enummer.Moves.north.toString());
         }
         else{
-            System.out.println("You cannot go North");
+            System.out.println(cannotMove+Enummer.Moves.north.toString());
         }
         if(dm.getCurrentRoom().isEntranceSouth()){
-            System.out.println("You can move South");
+            System.out.println(canMove+Enummer.Moves.south.toString());
         }
         else{
-            System.out.println("You cannot go South");
+            System.out.println(cannotMove+Enummer.Moves.south.toString());
         }
         if(dm.getCurrentRoom().isEntranceWest()){
-            System.out.println("You can move West");
+            System.out.println(canMove+Enummer.Moves.west.toString());
         }
         else{
-            System.out.println("You cannot go West");
+            System.out.println(cannotMove+Enummer.Moves.west.toString());
         }
          if(dm.getCurrentRoom().isStarisdown()){
-            System.out.println("You can move down");
+            System.out.println(canMove+Enummer.Moves.down.toString());
         }
         else{
-            System.out.println("You cannot go down");
+            System.out.println(cannotMove+Enummer.Moves.down.toString());
         }
           if(dm.getCurrentRoom().isStairsup()){
-            System.out.println("You can move up");
+            System.out.println(canMove+Enummer.Moves.up.toString());
         }
         else{
-            System.out.println("You cannot go up");
+            System.out.println(cannotMove+Enummer.Moves.up.toString());
         }
         
     }
@@ -116,13 +118,7 @@ public class GameController {
        DungeonsGateway dg = new DungeonsGateway();
        ArrayList<Room> list;
        list = (ArrayList<Room>) dg.loadDungeonsAll();
-       for(Room r : list){
-           System.out.println("++++++++++++++++++++++++++++++++++");
-                      System.out.println(r.toString());
-           System.out.println("------------------------------------");
-       }
-     
-         
+                
        dm = new DungeonMap(list);
 
     }
