@@ -16,7 +16,11 @@ import java.util.List;
 public class DungeonMap {
     private ArrayList<Room> room = new ArrayList<>();
     private Room currentRoom;
+
+    public DungeonMap() {
+    }
  
+    
     
     public DungeonMap(List<Room> rooms){
         for(Room r : rooms){

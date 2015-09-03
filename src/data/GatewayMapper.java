@@ -5,10 +5,25 @@
  */
 package data;
 
+import java.sql.SQLException;
+import map.DungeonMap;
+
 /**
  *
  * @author Andrew
  */
 public class GatewayMapper {
-    
+    private DungeonsGateway dg = new DungeonsGateway();
+    private DungeonMap dm = new DungeonMap();
+     public GatewayMapper(){
+        
+    }
+     
+     public DungeonMap getADungeon() throws SQLException{
+         //dg.getSpecificDungeon(Name);
+         dm = new DungeonMap(dg.loadDungeonsAll());
+         
+         return dm;
+         
+     }
 }

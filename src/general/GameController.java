@@ -7,6 +7,7 @@ package general;
 
 import data.DungeonsGateway;
 import data.Enummer;
+import data.GatewayMapper;
 //import data.Filehandler;
 import ddfplayer.Player;
 import java.io.FileNotFoundException;
@@ -30,20 +31,17 @@ public class GameController {
     private Combatter com = new Combatter();
     private Monster m = new Monster();
     private Weapon w = new Weapon();
+    private GatewayMapper gm = new GatewayMapper();
    
     
      
-    public GameController() throws SQLException {
-        //d.getDungeonroomsCollection();
+    public GameController() {
       testStats();
-//        try {
-////            f.loadRooms();
-//            
-//            System.out.println("Map loaded");
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-      newDungeon();
+        try {
+            newDungeon();
+        } catch (SQLException ex) {
+            Logger.getLogger(GameController.class.getName()).log(Level.SEVERE, null, ex);
+        }
       buildItems();
     }
     
@@ -115,11 +113,9 @@ public class GameController {
     }
     
     private void newDungeon()  throws SQLException{
-       DungeonsGateway dg = new DungeonsGateway();
-       ArrayList<Room> list;
-       list = (ArrayList<Room>) dg.loadDungeonsAll();
                 
-       dm = new DungeonMap(list);
+       dm = gm.getADungeon();
+       
 
     }
     
